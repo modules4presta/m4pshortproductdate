@@ -1,0 +1,1 @@
+<p>{l s='Expired date of product with lower date' mod='m4pshortproductdate'}: <b>{$data.date}</b></p>
