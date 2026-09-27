@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="module" source-language="en-US" target-language="en-US" datatype="plaintext">
+    <body>
+      <trans-unit id="6b3f075637a68fb9f90f4df5d8a2c86d">
+        <source>Expired date of product with lower date</source>
+        <target>Expired date of product with lower date</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
