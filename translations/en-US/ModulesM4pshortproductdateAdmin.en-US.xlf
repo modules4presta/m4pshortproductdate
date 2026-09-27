@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="module" source-language="en-US" target-language="en-US" datatype="plaintext">
+    <body>
+      <trans-unit id="52855c8a989d226b6df3fe2daa2118b6">
+        <source>Product short date</source>
+        <target>Product short date</target>
+      </trans-unit>
+      <trans-unit id="f8df8db641ab177c2617cc065098d793">
+        <source>Module to set custom short date.</source>
+        <target>Module to set custom short date.</target>
+      </trans-unit>
+      <trans-unit id="406d910fe768a8f9bc013d5ea23eeff0">
+        <source>Please note that this option requires you to create a combination from the product.</source>
+        <target>Please note that this option requires you to create a combination from the product.</target>
+      </trans-unit>
+      <trans-unit id="81f55e62e5e09fc3e4777895cf6559af">
+        <source>Active lower date</source>
+        <target>Active lower date</target>
+      </trans-unit>
+      <trans-unit id="93cba07454f06a4a960172bbd6e2a435">
+        <source>Yes</source>
+        <target>Yes</target>
+      </trans-unit>
+      <trans-unit id="bafd7322c6e97d25b6299b5d6fe8920b">
+        <source>No</source>
+        <target>No</target>
+      </trans-unit>
+      <trans-unit id="44749712dbec183e983dcd78a7736c41">
+        <source>Date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="80c9b27d16a264399e7642e680afa628">
+        <source>Enter date to which product have expired.</source>
+        <target>Enter date to which product have expired.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

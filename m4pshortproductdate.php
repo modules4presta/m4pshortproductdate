@@ -1,16 +1,11 @@
 <?php
 
 /**
- * LICENCE
+ * m4pshortproductdate
  *
- * ALL RIGHTS RESERVED.
- * YOU ARE NOT ALLOWED TO COPY/EDIT/SHARE/WHATEVER.
- *
- * IN CASE OF ANY PROBLEM CONTACT AUTHOR.
- *
- *  @author    Jan Kołodziej (contact@modules4presta.io)
- *  @copyright Modules4Presta.io
- *  @license   ALL RIGHTS RESERVED
+ * @author    Modules4Presta <contact@modules4presta.io>
+ * @copyright 2026 Nice Code sp. z o.o. (Modules4Presta)
+ * @license   https://opensource.org/licenses/MIT MIT License
  */
 
 if (!defined('_PS_VERSION_')) {
@@ -27,17 +22,17 @@ class M4pShortProductDate extends Module
         $this->config_prefix = strtoupper($this->name);
         $this->tab = 'front_office_features';
         $this->version = '1.0.0';
-        $this->author = 'Modules4Presta.io';
+        $this->author = 'Modules4Presta';
         $this->need_instance = 0;
-        $this->ps_versions_compliancy = ['min' => '1.7', 'max' => _PS_VERSION_];
+        $this->ps_versions_compliancy = ['min' => '1.7.6.0', 'max' => _PS_VERSION_];
         $this->bootstrap = true;
         $this->context = Context::getContext();
         $this->db = Db::getInstance();
 
         parent::__construct();
 
-        $this->displayName = $this->l('Product short date');
-        $this->description = $this->l('Module to set custom short date.');
+        $this->displayName = $this->trans('Product short date', [], 'Modules.M4pshortproductdate.Admin');
+        $this->description = $this->trans('Module to set custom short date.', [], 'Modules.M4pshortproductdate.Admin');
     }
 
     public function install()
@@ -69,10 +64,9 @@ class M4pShortProductDate extends Module
 
     private function getDatesData($idProduct)
     {
-        $sql = "SELECT * FROM " . _DB_PREFIX_ . "m4pshortproductdate_dates
-            WHERE id_product = " . pSQL((int) $idProduct);
-
-        return $this->db->getRow($sql);
+        return $this->db->getRow(
+            'SELECT * FROM `' . _DB_PREFIX_ . 'm4pshortproductdate_dates` WHERE id_product = ' . (int) $idProduct
+        );
     }
 
     public function hookDisplayAdminProductsExtra($params)
@@ -91,17 +85,25 @@ class M4pShortProductDate extends Module
 
     public function hookActionProductUpdate($params)
     {
-        $sql = "INSERT INTO `" . _DB_PREFIX_ . "m4pshortproductdate_dates` (`id_product`, `active`, `date`)
+        if (!Tools::getIsset('m4pshortproductdate_expired_date')) {
+            return;
+        }
+
+        $date = Tools::getValue('m4pshortproductdate_expired_date');
+        if (!Validate::isDate($date) && !Validate::isDateFormat($date)) {
+            $date = null;
+        }
+
+        $this->db->execute(
+            'INSERT INTO `' . _DB_PREFIX_ . 'm4pshortproductdate_dates` (`id_product`, `active`, `date`)
             VALUES (
-                " . pSQL((int) $params['id_product']) . ",
-                " . pSQL((int) Tools::getValue('m4pshortproductdate_active')) . ",
-                '" . pSQL(Tools::getValue('m4pshortproductdate_expired_date')) . "'
+                ' . (int) $params['id_product'] . ',
+                ' . (int) Tools::getValue('m4pshortproductdate_active') . ',
+                ' . ($date === null ? 'NULL' : "'" . pSQL($date) . "'") . '
             ) ON DUPLICATE KEY UPDATE
                 `active` = VALUES(`active`),
-                `date` = VALUES(`date`)
-        ";
-
-        $this->db->execute($sql);
+                `date` = VALUES(`date`)'
+        );
     }
 
     public function hookDisplayProductAdditionalInfo($params)
