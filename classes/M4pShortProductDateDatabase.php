@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  */
 
-class Database
+class M4pShortProductDateDatabase
 {
     public $sqlQueries = [];
     public $DB_tables = ['m4pshortproductdate_dates'];

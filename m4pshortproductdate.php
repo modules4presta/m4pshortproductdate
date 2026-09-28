@@ -12,7 +12,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-require_once __DIR__ . '/classes/Database.php';
+require_once __DIR__ . '/classes/M4pShortProductDateDatabase.php';
 
 class M4pShortProductDate extends Module
 {
@@ -42,7 +42,7 @@ class M4pShortProductDate extends Module
             || !$this->registerHook('displayAdminProductsExtra')
             || !$this->registerHook('actionProductUpdate')
             || !$this->registerHook('displayProductAdditionalInfo')
-            || !(new Database)->installQueries()
+            || !(new M4pShortProductDateDatabase())->installQueries()
         ) {
             return false;
         }
@@ -54,7 +54,7 @@ class M4pShortProductDate extends Module
     {
         if (
             !parent::uninstall()
-            || !(new Database)->uninstallQueries()
+            || !(new M4pShortProductDateDatabase())->uninstallQueries()
         ) {
             return false;
         }
